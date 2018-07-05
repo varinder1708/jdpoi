@@ -20,15 +20,13 @@ const renderSuggestion = suggestion => <div>{suggestion.name}</div>;
 class citieslistinput extends Component {
   constructor(props) {
     super(props);
-    {
       this.state = {
-        value: "",
+        value: this.props.val,
         suggestions: []
       };
     }
-  }
-
   onChange = (event, { newValue }) => {
+     this.props.onselectvalue(newValue);
     this.setState({
       value: newValue
     });
@@ -38,9 +36,6 @@ class citieslistinput extends Component {
     this.setState({
       suggestions: getSuggestions(value)
     });
-    // fetch(`https://swapi.co/api/people/?search=${value}`)
-    // .then(response => response.json())
-    // .then(data => this.setState({ suggestions: data.results }))
   };
   onSuggestionsClearRequested = () => {
     this.setState({
@@ -49,7 +44,6 @@ class citieslistinput extends Component {
   };
 
   render() {
-    
     const { value, suggestions } = this.state;
     const inputProps = {
       placeholder: "Select City",

@@ -1,62 +1,47 @@
 import React, { Component } from "react";
 import Autosuggest from "react-autosuggest";
 import styles from './SearchBar.css';
+
 const languages = [
   {
-    name: "AC repair",
+    title: "Bank",
     year: 1972
   },
   {
-    name: "AC service",
+    title: "Blood Bank",
     year: 2000
   },
   {
-    name: "Ac dealer",
+    title: "Courier Service",
     year: 1983
   },
   {
-    name: "doctor",
+    title: "Hospital",
     year: 2007
   },
   {
-    name: "doctor1",
+    title: "Mobile Repair Service",
     year: 2012
   },
   {
-    name: "doctorcat1",
+    title: "Packers Movers",
     year: 2009
   },
   {
-    name: "doctorcat2",
+    title: "School",
     year: 1990
   },
   {
-    name: "doctorcat3",
+    title: "Tailor",
     year: 1995
   },
   {
-    name: "doctorcat4",
+    title: "Veterinary Doctor",
     year: 1995
   },
   {
-    name: "doctorcat5",
+    title: "Visa Assistance",
     year: 1987
-  },
-  {
-    name: "doctorcat53",
-    year: 1995
-  },
-  {
-    name: "Pydoctorcat1thon",
-    year: 1991
-  },
-  {
-    name: "doctorcat123",
-    year: 1995
-  },
-  {
-    name: "doctorcat123",
-    year: 2003
   }
 ];
 const getSuggestions = value => {
@@ -66,26 +51,34 @@ const getSuggestions = value => {
   return inputLength === 0
     ? []
     : languages.filter(
-        lang => lang.name.toLowerCase().slice(0, inputLength) === inputValue
+        lang => lang.title.toLowerCase().slice(0, inputLength) === inputValue
       );
 };
-const getSuggestionValue = suggestion => suggestion.name;
+const getSuggestionValue = suggestion => suggestion.title;
 
 // Use your imagination to render suggestions.
-const renderSuggestion = suggestion => <div>{suggestion.name}</div>;
+const renderSuggestion = suggestion => <div>{suggestion.title}</div>;
 
 class SearchBar extends Component {
   constructor(props) {
     super(props);
-    {
+    
       this.state = {
-        value: "",
+        value: this.props.val,
         suggestions: []
       };
-    }
+    
   }
-
+  componentDidMount() {
+    // axios
+    // .get("http://cls.timesofindia.indiatimes.com/index.php?fn=cList")
+    // .then(function(response) {
+    //   console.log(response);
+    // });
+ 
+  }
   onChange = (event, { newValue }) => {
+    this.props.onselectvalue(newValue);
     this.setState({
       value: newValue
     });
@@ -104,19 +97,6 @@ class SearchBar extends Component {
       suggestions: []
     });
   };
-
-  // componentWillMount()
-  // {
-  //   axios.get('../public/cities.js')
-  //   .then( response => { alert(response)
-  //     this.setState({
-  //     userList: response.data
-  //   });
-  // })
-  // .catch(function (error) {
-  //   console.log(error);
-  // });
-  // }
   render() {
     
     const { value, suggestions } = this.state;
