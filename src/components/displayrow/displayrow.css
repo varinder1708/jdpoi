@@ -1,4 +1,4 @@
-.row{border:1px solid #cccc;margin-top:20px;position:relative;height:100px}
+.row{border:1px solid #cccc;margin-top:20px;position:relative;height:100px;font-size:12px}
 .btn{float:right;    top: 42px;
     right: 28px;position:absolute;}
     strong{line-height:33px}

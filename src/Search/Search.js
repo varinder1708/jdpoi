@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import SearchBar from "../components/SearchBarStaticdata/SearchBar";
 import styles from "./search.css";
-
 import Citieslistinput from "../components/citieslistinput/citieslistinput";
 import * as queryString from "query-string";
 import axios from "axios";
@@ -31,14 +30,13 @@ class Search extends Component {
         )
         .then(response => {
           this.setState({ data: response.data });
-          console.log("results in Search");
-          console.log(response.data);
         });
     }
   }
 
   searchCategory = event => {
     event.preventDefault();
+    
     window.location =
       "/search?location=" +
       this.state.location +

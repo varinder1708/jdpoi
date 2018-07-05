@@ -1,6 +1,9 @@
+
 import React, { Component } from "react";
 import * as queryString from "query-string";
 import axios from "axios";
+import DisplayProperty from "../components/displayproperty/displayproperty";
+
 class Detail extends Component {
   constructor(props) {
     super(props);
@@ -27,26 +30,9 @@ class Detail extends Component {
       });
   }
   render() {
-    var divStyle = {
-      "font-size": "24px"
-    };
-    var divStylee = {
-      "font-size": "20px"
-    };
     return (
       <div>
-        <p style={divStyle}>
-          <strong>{this.state.data.title}</strong>
-        </p>
-        <p style={divStylee}>
-          <strong>Rating: {this.state.data.avg_rating}</strong>
-        </p>
-        <p style={divStylee}>
-          <strong>{this.state.data.full_address}</strong>
-        </p>
-        <p style={divStylee}>
-          <strong>{this.state.data.Category}</strong>
-        </p>
+       <DisplayProperty obj={this.state.data}/>
       </div>
     );
   }
